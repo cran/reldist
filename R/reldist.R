@@ -1,8 +1,8 @@
 #
-# This is version 1.4 of the reldist functions.
+# This is version 1.5 of the reldist functions.
 #   by Mark S. Handcock
 #
-#   May 1, 2004
+#   July 1, 2004
 #
 #  See the  README file for details.
 #
@@ -350,6 +350,7 @@
      }
    }
    xx <- as.vector(xx)
+   gpdf <- xx
  #
    if(method=="loclik"){
  #
@@ -386,7 +387,7 @@
         for(i in seq(along=aicc[,1])){
          yl <- gam(y ~ s(x, bs="cr"),sp=aicc[i,1],
 	           family = "poisson", data=gamdata)
-         df <- yl$edf + 2
+         df <- summary(yl)$edf + 2
          if(df >= binn - 2){
            aicc[i,2] <- Inf
          }else{
@@ -425,7 +426,7 @@
  #     Anscombe transformation to stabilize variances
  #     not quite as good
  #
-       require(modreg, quietly = TRUE, keep.source = FALSE)
+ #     require(modreg, quietly = TRUE, keep.source = FALSE)
  #
        vstxx <- 2*sqrt(m*xx + 3/8)
        yl <- loess(vstxx ~ r, span = smooth, degree = 1)
@@ -1972,10 +1973,18 @@ resplot <- function(x, standardize=TRUE,
 ######################################################################
 .First.lib <- function(lib, pkg){
 #   library.dynam("ergmtesting", pkg, lib)
-    ehelp <- help(package="reldist")$info[[2]][[2]]
-    cat(paste("'",ehelp[4],"'\n",
-              "Version ",ehelp[2],
-              " created on ",ehelp[3],".\n", sep=""))
+    if(R.version$major=="1"){
+     ehelp <- help(package="reldist")$info[[2]][[2]]
+     cat(paste("'",ehelp[4],"'\n",
+               "Version ",ehelp[2],
+               " created on ",ehelp[3],".\n", sep=""))
+    }else{
+     ehelp <- help(package="reldist")$info[[2]]
+     cat(paste(substring(ehelp[4],first=16),"\n",
+               "Version ",substring(ehelp[2],first=16),
+               " created on ",
+                substring(ehelp[3],first=16),".\n", sep=""))
+    }
     cat(paste("copyright (c) 2003, Mark S. Handcock, University of Washington\n",
 "                    Martina Morris, University of Washington\n",sep=""))
     cat('Type help(package="reldist") to get started.\n')
