@@ -1,0 +1,15 @@
+The following are the subdirectories the I haven't included with the
+reldist package:
+
+src - The C, C++, or FORTRAN source files for the compiled code are
+    in 'src', plus optionally file 'Makevars' or 'Makefile'.
+
+demo - The 'demo' subdirectory is for R scripts (for running via 
+     demo()) which demonstrate some of the functionality of the package.
+
+inst - The contents of the 'inst' subdirectory will be copied 
+     recursively to the installation directory.
+
+tests - Subdirectory 'tests' is for additional package-specific 
+      test code, similar to the specific tests that come with the 
+      R distribution.
