@@ -1979,7 +1979,12 @@ resplot <- function(x, standardize=TRUE,
                "Version ",ehelp[2],
                " created on ",ehelp[3],".\n", sep=""))
     }else{
-     ehelp <- help(package="reldist")$info[[2]]
+#    ehelp <- help(package="reldist")$info[[2]]
+     if(R.version$minor < "1.0"){
+      ehelp <- library(help="reldist",lib.loc=NULL,character.only=TRUE)$info[[2]]
+     }else{
+      ehelp <- library(help="reldist",lib.loc=NULL,character.only=TRUE)$info[[1]]
+     }
      cat(paste(substring(ehelp[4],first=16),"\n",
                "Version ",substring(ehelp[2],first=16),
                " created on ",

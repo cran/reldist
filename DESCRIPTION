@@ -1,6 +1,6 @@
 Package: reldist
-Version: 1.5-2
-Date: October 1, 2004
+Version: 1.5-3
+Date: July 4, 2005
 Title: Relative Distribution Methods
 Author: Mark S. Handcock <handcock@stat.washington.edu>
 Maintainer: Mark S. Handcock <handcock@stat.washington.edu>
@@ -11,5 +11,5 @@ Description: R functions for the comparison of distributions.
  by Mark S. Handcock and Martina Morris, 
  Springer-Verlag, 1999, Springer-Verlag, ISBN 0387987789 
 License: GPL version 2 (June, 1991)
-URL: http://www.stat.washington.edu/handcock/RelDist
-Packaged: Wed Oct  6 15:13:57 2004; handcock
+URL: http://www.stat.washington.edu/~handcock/RelDist
+Packaged: Thu Jul 28 16:16:58 2005; handcock

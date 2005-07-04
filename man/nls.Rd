@@ -1,5 +1,7 @@
 \name{nls}
 \alias{nls}
+\alias{original}
+\alias{recent}
 \title{Permanent wage growth in two cohorts of the NLS}
 \description{
 These data are from two cohorts of the National Longitudinal Survey
@@ -35,5 +37,5 @@ Springer-Verlag, Inc., New York, 1999. ISBN 0387987789.
 American Labor Market}, Russell Sage Foundation, New York, June 2001
 Annette D. Bernhardt, Martina Morris, Mark S. Handcock and Marc Scott.
 }
-\seealso{original, recent, reldist}
+\seealso{reldist}
 \keyword{datasets}

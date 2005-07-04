@@ -4,7 +4,7 @@
 # obtained at http://www.csss.washington.edu/Papers
 
 library(reldist)
-data(nls)
+data(nls, package="reldist")
 
 pdf("Fig1.pdf", width=4.0,height=7.5,horiz=FALSE)
 par(mfrow=c(2,1))
