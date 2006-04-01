@@ -35,8 +35,8 @@ resplot(x,
 \examples{
 y <- rnorm(2000)
 resplot(y)
-data(precip)
-resplot(precip, ylab = "Precipitation [in/yr] for 70 US cities")
+data(precipitation)
+resplot(precipitation, ylab = "Precipitation [in/yr] for 70 US cities")
 }
 \keyword{hplot}
 \keyword{distribution}

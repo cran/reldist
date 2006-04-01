@@ -1174,8 +1174,8 @@
    missargs <- NULL
    if(missing(y)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
    if(missing(yo)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
-   if(missing(ywgt)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
-   if(missing(yowgt)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
+   if(missing(ywgt) | is.logical(ywgt)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
+   if(missing(yowgt) | is.logical(yowgt)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
    if(missing(show)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
    if(missing(decomp)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
    if(missing(location)){missargs <- c(missargs,TRUE)}else{missargs <- c(missargs,FALSE)}
@@ -1963,10 +1963,12 @@ rdeciles <- function(y, yo, ywgt=FALSE,yowgt=FALSE,
 resplot <- function(x, standardize=TRUE,
                     xlab="Gaussian Cumulative Proportion", ...){
   if(standardize){
-   x <- ( x - mean(x, na.rm=TRUE) ) / sqrt(var(x, na.rm=TRUE)) 
+   stdres <- ( x - mean(x, na.rm=TRUE) ) / sqrt(var(x, na.rm=TRUE)) 
+  }else{
+   stdres <- x[!is.na(x)]
   }
-  xrange <- range(c(0,2,reldist(y=pnorm(q=x), graph=FALSE, ...)$y))
-  reldist(y=pnorm(q=x),
+  xrange <- range(c(0,2,reldist(y=pnorm(q=stdres), graph=FALSE, ...)$y))
+  reldist(y=pnorm(q=stdres),
           ylim=xrange,
           xlab=xlab, ...)
 }
