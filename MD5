@@ -1,10 +1,10 @@
-8b4cb6e71dd2a2dd9d87558da9fb3d5e *DESCRIPTION
+66cd71faf66d44a5a6b55a69abe5b404 *DESCRIPTION
 28c3725337f9c3ffad20289f6d58c7d7 *LICENSE
-9fdfeb11f7ddba6f3aab9aaa6b1ac5dd *NAMESPACE
+ee409148340ac7bbdcd59d5813d36644 *NAMESPACE
 e6edca7f2fbe0365ea455654301a67c2 *R/gini.r
-18852fd5a6a65c48c36b1cbe6804d8ab *R/reldist.R
+883ed1fe987dfffebb4f086eefabd56f *R/reldist.R
 572ec5708cbbb5cf8cf9235a79d3155a *R/wtd.quantile.R
-0168e2c19a7938ed4db4f8df25def7cd *R/zzz.R
+b827f0d444b81fa333194f0d87a98bcf *R/zzz.R
 794a7314e837bb563925ff594ce6b044 *data/nls.RData
 4a20ba49221654397e0d6359c1baa57c *data/precipitation.RData
 3c3f163040f729a5059f244f44ebe9e8 *inst/CITATION
