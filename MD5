@@ -1,8 +1,9 @@
-c4f070f7e56f8b4582a54853ec86f3df *DESCRIPTION
+565c31d24f3cf49c3d4ecd5ab32880ed *DESCRIPTION
 28c3725337f9c3ffad20289f6d58c7d7 *LICENSE
-ee409148340ac7bbdcd59d5813d36644 *NAMESPACE
+ff47aec41ef0042f04d5967ed6b79071 *NAMESPACE
+d71f6b4ca57fdde72988f62bbcc024e9 *R/bgk_kde.R
 e6edca7f2fbe0365ea455654301a67c2 *R/gini.r
-883ed1fe987dfffebb4f086eefabd56f *R/reldist.R
+286f4b2b657c6dcd19a2ccfc0d045b5f *R/reldist.R
 572ec5708cbbb5cf8cf9235a79d3155a *R/wtd.quantile.R
 b827f0d444b81fa333194f0d87a98bcf *R/zzz.R
 794a7314e837bb563925ff594ce6b044 *data/nls.RData
@@ -11,8 +12,8 @@ b827f0d444b81fa333194f0d87a98bcf *R/zzz.R
 2e17808e7f5d702f5eaa4eeedb4448e7 *man/gini.Rd
 07c68c2a9cf589f688f82efe957aff52 *man/nls.Rd
 9c7937177ef3661c3d71e800412c60cc *man/precipitation.Rd
-8a1232b9b0558ef15e74e9004c63ba4f *man/reldist-internal.Rd
-27a63e15436cf8fcc8994036ceb6c5b6 *man/reldist.Rd
+f211f37dbad2caf657814a0e2d53f4fd *man/reldist-internal.Rd
+5b681e82d6cc8b2241c6f460b89fe276 *man/reldist.Rd
 9013b2e72d9ab53ea39b6326e290d53c *man/resplot.Rd
 88a4de50bf0a6ad5cea0ed7ac37d126f *man/wtd.iqr.Rd
 11b1a63e9a211bb4b600c9c84bff22bc *man/wtd.quantile.Rd

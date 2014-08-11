@@ -46,7 +46,7 @@
   aicc=seq(0.0001, 5, length=30),
   deciles=(0:10)/10,
   discrete=FALSE,
-  method="gam",
+  method="bgk",
   ...) {
 #
 # missing test
@@ -358,9 +358,9 @@
  #   and AIC to choose the bandwidth
  #   based on a grid search
  #
-     require(locfit, quietly = TRUE)
+   if(require(locfit, quietly = TRUE)){
  #
-     yl <- locfit(~ x, weights=ywgt, xlim=c(0,1),
+     yl <- locfit::locfit(~ x, weights=ywgt, xlim=c(0,1),
            alpha=c(2*smooth,0.3), flim=c(0,1))
  #    gpdf <- locfit(~ x, weights=ywgt, xlim=c(0,1), renorm=TRUE, 
  #          acri="cp", alpha=smooth, flim=c(0,1),ev="grid",mg=binn)
@@ -371,14 +371,16 @@
 #    if(ci){
 #      warning('Confidence intervals require method="gam"\n')
 #    }
-   }
+   }else{
+    method="bgk"
+   }}
    if(method=="gam"){
 #
 #     Use local-likelihood density estimation 
 #     and AICC to choose the bandwidth
 #     based on a grid search
 #
-      require(mgcv, quietly = TRUE)
+#     require(mgcv, quietly = TRUE)
       is.wholenumber <- function(x, tol = .Machine$double.eps^0.5){
         abs(x - round(x)) < tol
       }
@@ -388,7 +390,7 @@
         aicc <- cbind(aicc,aicc)
         dimnames(aicc)[[2]] <- c("smooth","aicc")
         for(i in seq(along=aicc[,1])){
-         yl <- gam(y ~ s(x, bs="cr"),sp=aicc[i,1],
+         yl <- mgcv::gam(y ~ s(x, bs="cr"),sp=aicc[i,1],
 	           family = family, data=data.frame(x=r,y=m*xx))
          df <- summary(yl)$edf + 2
          if(df >= binn - 2){
@@ -402,11 +404,11 @@
 #       print(aicc)
       }
       if(really.missing(smooth, missargs)){
-         yl <- gam(y ~ s(x, bs="cr"), scale=-1,
+         yl <- mgcv::gam(y ~ s(x, bs="cr"), scale=-1,
 	           family = family, data=data.frame(x=r,y=m*xx))
          smooth <- yl$sp
       }else{
-       yl <- gam(y ~ s(x, bs="cr"), sp=smooth,
+       yl <- mgcv::gam(y ~ s(x, bs="cr"), sp=smooth,
             family = family, data=data.frame(x=r,y=m*xx)) 
       }
       if(smooth > maxsmooth){
@@ -414,14 +416,28 @@
       }else{
         cat(paste("Smoothing using",format(smooth),"\n"))
       }
-      gpdf <- predict(yl, type = "response")
+      gpdf <- mgcv::predict.gam(yl, type = "response")
 #
       scalef <- binn/sum(gpdf)
       gpdf <- gpdf * scalef
       if(ci){
-        gpdfse <- predict.gam(yl, type = "response", se.fit=TRUE)$se.fit
+        gpdfse <- mgcv::predict.gam(yl, type = "response", se.fit=TRUE)$se.fit
         gpdfse <- as.vector(gpdfse) * scalef
       }
+    }
+#
+   if(method=="bgk"){
+#
+#     Use Botev. Z.I., Grotowski J.F and Kroese D. P. (2010)
+#
+      a=bgk_kde(x,n=2^(ceiling(log(binn)/log(2))),MIN=0,MAX=1,smooth=4*smooth/0.35)
+#     gpdf <- approx(x=a[1,],y=a[2,],xout=r,rule=2)$y
+#     Use an interpolating cubic spline
+      gpdf <- spline(x=a[1,],y=a[2,],xout=r)$y
+#     gpdf <- predict(smooth.spline(x=a[1,],y=a[2,],df=45*smooth),x=r)$y
+#
+      scalef <- binn/sum(gpdf)
+      gpdf <- gpdf * scalef
     }
 #
    if(method=="quick"){
@@ -492,7 +508,7 @@
           xaxt="n", yaxt="n", ...)
      }
      if(add){
-       if(method != "gam" & method != "histogram" & method != "quick"){
+       if(method != "bgk" & method != "gam" & method != "histogram" & method != "quick"){
          graph <- FALSE}
        if(cdfplot){
          lines(x = r, y = cdfgr, lty=lty)
@@ -525,7 +541,7 @@
          ...)
      }
      if(add){
-       if(method != "gam" & method != "histogram" & method != "quick"){
+       if(method != "bgk" & method != "gam" & method != "histogram" & method != "quick"){
          graph <- FALSE}
        if(cdfplot){
          lines(x = r, y = cdfgr, lty=lty)
@@ -1553,12 +1569,12 @@ rddist <- function(y, yo, add=FALSE, ylim=NULL,ywgt=FALSE,yowgt=FALSE,
   y2 <- rep(gx,c(rep(2,nx-1),4))[-1]             
   x2 <- c(rep(x,rep(2,nx)),1)  
 #
-  require(mgcv, quietly = TRUE)
+# require(mgcv, quietly = TRUE)
   r <- seq(0, 1, length = binn + 1)[-1] - 0.5/binn
   pdfgdd <- approx(x=c(0,x),y=c(0,cumsum(pix)), xout=r)
   pdfgdd$y <- diff(c(0,pdfgdd$y))
   pdfgdd$y[is.na(pdfgdd$y)] <- 1
-  pdfgdd$y <- binn*predict(gam(y ~ s(x), data=pdfgdd), type="response")
+  pdfgdd$y <- binn*mgcv::predict.gam(mgcv::gam(y ~ s(x), data=pdfgdd), type="response")
 #
 # Calculate the entropy of the relative distribution
 #
