@@ -123,7 +123,7 @@ par(err=-1)
 par(mfrow=c(2,1))
 #
 fig3a <- reldist(y=recent$chpermwage,yo=original$chpermwage,ci=FALSE,
-        smooth=1.2,
+        smooth=1.2, method="loglik",
 	yowgt=original$wgt,ywgt=recent$wgt,
 	cdfplot=TRUE,
 	yolabs=seq(-1,3,by=0.5),
@@ -154,6 +154,7 @@ par(mfrow=c(1,3))
 
 g10 <- reldist(y=recent$chpermwage, yo=original$chpermwage, smooth=0.4, ci=FALSE,
 	ywgt=recent$wgt, yowgt=original$wgt,
+        method="gam",
 	yolabs=seq(-1,3,by=0.5),
 	ylim=c(0.5,3.0),
 	bar=TRUE, quiet=FALSE,
