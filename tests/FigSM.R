@@ -6,7 +6,7 @@
 library(reldist)
 data(nls, package="reldist")
 
-postscript("Fig1.ps", width=4.0,height=7.5,horizontal=FALSE)
+pdf("Fig1.pdf", width=4.0,height=7.5)
 par(mfrow=c(2,1))
 par(err=-1)
 #par(mar=c(2.5,4.1,2.1,2.1), mgp=c(1.5,1,0))
@@ -91,7 +91,7 @@ title(main="(b)",cex=0.6)
 #
 # Now do the RD with smooth=0.4
 #
-postscript("Fig2.ps", width=4.0,height=7.5,horizontal=FALSE)
+pdf("Fig2.pdf", width=4.0,height=7.5)
 par(err=-1)
 par(mfrow=c(2,1))
 #par(mar=c(2.5,4.1,2.1,2.1), mgp=c(1.5,1,0))
@@ -118,7 +118,7 @@ title(main="(b)",cex=0.6)
 #
 # Now do the RD with smooth=1.2
 #
-postscript("Fig3.ps", width=4.0,height=7.5,horizontal=FALSE)
+pdf("Fig3.pdf", width=4.0,height=7.5)
 par(err=-1)
 par(mfrow=c(2,1))
 #
@@ -142,7 +142,7 @@ fig3b <- reldist(y=recent$chpermwage,yo=original$chpermwage,ci=FALSE,
         xlab="Proportion of the Original Cohort")
 title(main="(b)",cex=0.6)
 #
-postscript(file = "Fig4.ps",width=6.5,height=3.0,horizontal=TRUE)
+pdf(file = "Fig4.pdf",width=6.5,height=3.0,paper="USr")
 par(err=-1)
 par(mfrow=c(1,3))
 #
@@ -221,7 +221,7 @@ e1[e1 > 18] <- 18
 e2 <- recent$endeduc
 e2[e2 < 8] <- 8
 e2[e2 > 18] <- 18
-postscript("Fig5.ps", width=4.5,height=4.5,horizontal=FALSE)
+pdf("Fig5.pdf", width=4.5,height=4.5)
 par(err=-1)
 g10 <- rddist(y=e2, yo=e1, pool=1, ci=FALSE, quiet=FALSE,
         ywgt=recent$wgt,yowgt=original$wgt,
@@ -231,7 +231,7 @@ g10 <- rddist(y=e2, yo=e1, pool=1, ci=FALSE, quiet=FALSE,
 title(sub=paste("entropy = ",format(entropy(g10),digits=3)))
 abline(h=1,lty=2)
 #
-postscript(file = "Fig6.ps",width=6.5,height=3.0,horizontal=TRUE)
+pdf(file = "Fig6.pdf",width=6.5,height=3.0,paper="USr")
 par(err=-1)
 par(mfrow=c(1,3))
 #
@@ -355,7 +355,7 @@ pwscr  <- recent$chpermwage[el2 >  2 & !is.na(el2)]
 wgthsr <- recent$wgt[el2 <= 2 & !is.na(el2)]
 wgtscr <- recent$wgt[el2 >  2 & !is.na(el2)]
 #
-postscript("Fig7.ps",width=5.5,height=5.5,horizontal=TRUE)
+pdf("Fig7.pdf",width=5.5,height=5.5,paper="USr")
 par(err=-1)
 par(mfrow=c(2,2))
 #
@@ -462,7 +462,7 @@ dimnames(collectresults)<-list(
 #
 print(collectresults)
 binn <- 10
-postscript(file = "Fig8.ps",width=6.5,height=3.5,horizontal=TRUE)
+pdf(file = "Fig8.pdf",width=6.5,height=3.5,paper="USr")
 par(err=-1)
 par(mfrow=c(1,2))
 #
