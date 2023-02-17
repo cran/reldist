@@ -1,6 +1,6 @@
 Package: reldist
-Version: 1.7-1
-Date: 2022-05-14
+Version: 1.7-2
+Date: 2023-02-16
 Title: Relative Distribution Methods
 Author: Mark S. Handcock <handcock@stat.ucla.edu>
 Maintainer: Mark S. Handcock <handcock@stat.ucla.edu>
@@ -10,6 +10,6 @@ Suggests: locfit
 License: GPL-3 + file LICENSE
 URL: http://www.stat.ucla.edu/~handcock/RelDist/
 NeedsCompilation: no
-Packaged: 2022-05-14 22:26:07 UTC; handcock
+Packaged: 2023-02-17 17:06:44 UTC; handcock
 Repository: CRAN
-Date/Publication: 2022-05-14 23:20:09 UTC
+Date/Publication: 2023-02-17 22:30:03 UTC
